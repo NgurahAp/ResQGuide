@@ -8,6 +8,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<String> images = [
+    'assets/image/listGuide/faint/faint.jpg',
+    'assets/image/listGuide/burns/burnt.jpg',
+    'assets/image/listGuide/cuts/cuts.png',
+  ];
+
+  List<String> titles = [
+    'Faint',
+    'Minor Burns',
+    'Fingger Cuts',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Text(
@@ -41,7 +53,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(height: 20),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/ai');
+                    },
                     child: SizedBox(
                       width: double.infinity,
                       height: 150,
@@ -51,17 +65,17 @@ class _HomePageState extends State<HomePage> {
                         ),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 221, 199, 166),
+                            color: const Color.fromARGB(255, 221, 199, 166),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: const Center(
                             child: Padding(
                               padding: EdgeInsets.all(16),
                               child: Text(
-                                'Tidak menemukan panduan yang sesuai?\n\nTanya dengan AI disini!',
+                                "Didn't find a suitable guide?\n\nAsk AI here!",
                                 style: TextStyle(
                                   fontSize: 15,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w700,
                                 ),
                                 textAlign: TextAlign.left,
                               ),
@@ -70,6 +84,54 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemCount: images.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/guide$index');
+                        },
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: const BorderSide(color: Color(0xFFE55812)),
+                          ),
+                          child: Column(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: SizedBox(
+                                  height: 150,
+                                  width: double.infinity,
+                                  child: Image.asset(
+                                    images[index],
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                titles[index],
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),

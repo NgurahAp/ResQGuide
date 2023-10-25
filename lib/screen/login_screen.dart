@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:resq_guide/screen/home_screen.dart';
 import 'package:resq_guide/service/login_service.dart';
 
 class LoginPage extends StatelessWidget {
@@ -83,7 +82,7 @@ class LoginPage extends StatelessWidget {
                   fillColor: Colors.white, // Warna latar belakang TextField
                   hintText: 'Password',
                   hintStyle: const TextStyle(color: Colors.grey),
-                  
+
                   prefixIcon: const Icon(
                     Icons.password_rounded, // Menggunakan ikon pengguna
                     color: Colors.grey, // Warna ikon
@@ -111,6 +110,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 cursorColor: const Color(0xFF0E4749),
+                obscureText: true,
               ),
               const SizedBox(
                 height: 25,
@@ -147,11 +147,7 @@ class LoginPage extends StatelessWidget {
                                 await LoginService.login(username, password);
                             if (isLogin) {
                               // ignore: use_build_context_synchronously
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const HomePage()),
-                              );
+                              Navigator.pushNamed(context, '/home');
                             } else {
                               // ignore: use_build_context_synchronously
                               showDialog(

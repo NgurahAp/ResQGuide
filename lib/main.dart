@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:resq_guide/screen/ai/ai_screen.dart.dart';
+import 'package:resq_guide/screen/guide/burns.dart';
+import 'package:resq_guide/screen/guide/cuts.dart';
+import 'package:resq_guide/screen/guide/faint.dart';
 import 'package:resq_guide/screen/home_screen.dart';
 import 'package:resq_guide/screen/login_screen.dart';
 
@@ -16,8 +20,12 @@ class MyApp extends StatelessWidget {
       title: 'Task Management',
       theme: ThemeData(fontFamily: 'sfmono'),
       routes: {
-        '/': (context) => HomePage(),
+        '/': (context) => LoginPage(),
         '/home': (context) => const HomePage(),
+        '/ai': (context) => const AIScreen(),
+        '/guide0': (context) => const FaintPage(),
+        '/guide1': (context) => const BurnsPage(),
+        '/guide2': (context) => const CutsPage(),
       },
     );
   }
