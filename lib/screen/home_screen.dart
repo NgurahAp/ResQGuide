@@ -10,14 +10,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<String> images = [
     'assets/image/listGuide/faint/faint.jpg',
-    'assets/image/listGuide/burns/burnt.jpg',
     'assets/image/listGuide/cuts/cuts.png',
+    'assets/image/listGuide/choking/choking.png',
+    'assets/image/listGuide/burns/burnt.jpg',
   ];
 
   List<String> titles = [
     'Faint',
-    'Minor Burns',
     'Fingger Cuts',
+    'Choking',
+    'Minor Burns',
   ];
 
   @override
@@ -51,41 +53,15 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/ai');
-                    },
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 150,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 221, 199, 166),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(16),
-                              child: Text(
-                                "Didn't find a suitable guide?\n\nAsk AI here!",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Your go-to app for emergency medical assistance. In critical situations such as heart attacks, fainting, and more.',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 30),
                   GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -132,6 +108,35 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
+                  ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/ai');
+                      },
+                      child: Container(
+                        width: 300,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 221, 199, 166),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(16),
+                            child: Text(
+                              "Didn't find a suitable guide?\n\nAsk AI here!",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                              ),
+                              textAlign: TextAlign.left,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),

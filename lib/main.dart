@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:resq_guide/screen/ai/ai_screen.dart.dart';
 import 'package:resq_guide/screen/guide/burns.dart';
+import 'package:resq_guide/screen/guide/choking.dart';
 import 'package:resq_guide/screen/guide/cuts.dart';
 import 'package:resq_guide/screen/guide/faint.dart';
 import 'package:resq_guide/screen/home_screen.dart';
@@ -24,8 +25,9 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/ai': (context) => const AIScreen(),
         '/guide0': (context) => const FaintPage(),
-        '/guide1': (context) => const BurnsPage(),
-        '/guide2': (context) => const CutsPage(),
+        '/guide1': (context) => const CutsPage(),
+        '/guide2': (context) => const ChokingPage(),
+        '/guide3': (context) => const BurnsPage(),
       },
     );
   }
