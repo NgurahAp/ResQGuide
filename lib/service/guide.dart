@@ -25,7 +25,7 @@ class GuideService {
       };
 
       String promptData =
-          '[{"id":1,"title":"faint","deskripsi":"Make sure the person is in a safe position and call emergency medical immediately","routeName":"/guide0"},{"id":2,"title":"Cuts","deskripsi":"Rinse the cut with cool water to remove any dirt or debris","routeName":"/guide1"},{"id":3,"title":"Choking","deskripsi":"Determine if the person is conscious and able to cough or speak. If they are unable to cough, speak, or breathe, immediate action is needed.","routeName":"/guide2"},{"id":4,"title":"Burns","deskripsi":"Immediately immerse the burn in cool tap water or apply cold, wet compresses for about 10 minutes or until the pain subsides. Avoid using ice directly on the burn, as extreme cold can further damage the tissue","routeName":"/guide3"}] you are now a search engine. From the existing data, look for data that matches the following user input: $question. The output is in the form of a list with the contents value of routeName based on the data above. If the data is not found, please provide a response in the form of a list w. Example output : /guide0, /guide1, /guide2, /guide3, /guide4 dan jangan kasih kurung siku dan petik 2';
+          '[{"id":1,"title":"faint","routeName":"/guide0"},{"id":2,"title":"Fingger Cuts","routeName":"/guide1"},{"id":3,"title":"Choking","routeName":"/guide2"},{"id":4,"title":"Minor Burns","routeName":"/guide3"}] you are now a search engine. From the existing data, look for data that matches the following user input: $question. The output is in the form of a list with the contents value of routeName based on the data above. Example output : /guide0, /guide1, /guide2, /guide3, /guide4 dan jangan kasih kurung siku dan petik 2. If the data is not found then please seek first aid when you find someone in this condition $question. with format output: Things to do when you find someone in a situation.. briefly and in point form and a maximum of 100 words.';
 
       final data = jsonEncode({
         "model": "gpt-3.5-turbo",
@@ -38,7 +38,6 @@ class GuideService {
         "temperature": 0.7,
         "max_tokens": 1000
       });
-      // print("Print sebelum response");
       var response = await http.post(
         url,
         headers: headers,
