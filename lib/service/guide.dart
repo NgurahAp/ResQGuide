@@ -25,7 +25,10 @@ class GuideService {
       };
 
       String promptData =
-          "First aid when finding someone $question with a short explanation of up to 100 with the answer format 'Things to do when finding someone...'";
+          '[{"id":1,"title":"faint","deskripsi":"Make sure the person is in a safe position and call emergency medical immediately","routeName":"/guide0"},{"id":2,"title":"Cuts","deskripsi":"Rinse the cut with cool water to remove any dirt or debris","routeName":"/guide1"},{"id":3,"title":"Choking","deskripsi":"Determine if the person is conscious and able to cough or speak. If they are unable to cough, speak, or breathe, immediate action is needed.","routeName":"/guide2"},{"id":4,"title":"Burns","deskripsi":"Immediately immerse the burn in cool tap water or apply cold, wet compresses for about 10 minutes or until the pain subsides. Avoid using ice directly on the burn, as extreme cold can further damage the tissue","routeName":"/guide3"}] you are now a search engine. From the existing data, look for data that matches the following user input: $question. The output is in the form of a list with the contents of title and routeName based on the data above. If the data is not found, please provide a response in the form of a list with the title not found ';
+
+      // String promptData = 'kamu adalah chatbot dengan gpt 3.5. $question';
+
       final data = jsonEncode({
         "model": "gpt-3.5-turbo",
         "messages": [
@@ -37,14 +40,21 @@ class GuideService {
         "temperature": 0.7,
         "max_tokens": 1000
       });
-
+      print("Print sebelum response");
       var response = await http.post(
         url,
         headers: headers,
         body: data,
       );
+      // print(response.body);
+
       if (response.statusCode == 200) {
+        // Map<String, dynamic> jawaban = jsonDecode(response.body);
+        // String routeName =
+        //     jawaban["choices"][0]["message"]["content"][0]["routeName"];
+        // print(routeName);
         gptData = gptDataFromJson(response.body);
+        print(gptData);
       }
     } catch (e) {
       throw Exception('Error occured when sending request');

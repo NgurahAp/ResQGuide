@@ -126,7 +126,8 @@ class _AIScreenState extends State<AIScreen> {
                       Padding(
                         padding: const EdgeInsets.all(16),
                         child: Text(
-                          result.choices[0].text,
+                          '',
+                          // result.choices[0].text,
                           textAlign: TextAlign.left,
                           style: const TextStyle(
                             fontWeight: FontWeight.w700,
