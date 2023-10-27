@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:resq_guide/helpers/contact.dart';
 import 'package:resq_guide/screen/ai/ai_screen.dart.dart';
+import 'package:resq_guide/screen/emergencyContact/contact_screen.dart';
 import 'package:resq_guide/screen/guide/burns.dart';
 import 'package:resq_guide/screen/guide/choking.dart';
 import 'package:resq_guide/screen/guide/cuts.dart';
@@ -28,6 +31,10 @@ class MyApp extends StatelessWidget {
         '/guide1': (context) => const CutsPage(),
         '/guide2': (context) => const ChokingPage(),
         '/guide3': (context) => const BurnsPage(),
+        '/contact':(context) => ChangeNotifierProvider(
+          create: (_) => UserProvider(),
+          child: const ContactScreen(),
+        ),
       },
     );
   }

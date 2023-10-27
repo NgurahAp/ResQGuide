@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+
           SingleChildScrollView(
             child: Container(
               padding: const EdgeInsets.all(20),
@@ -43,8 +44,17 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: _showEmergencyContactSheet,
+                        icon: const Icon(Icons.person),
+                      ),
+                    ],
+                  ),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   const Text(
                     'ResQGuide',
@@ -144,6 +154,48 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+
+  void _showEmergencyContactSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
+          decoration: const BoxDecoration(
+            color: Color(0xFFEFE7DA),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage('assets/image/1771.jpg'),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Glenn Garcia',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/contact');
+                },
+                child: const Text('Emergency Contact'),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
