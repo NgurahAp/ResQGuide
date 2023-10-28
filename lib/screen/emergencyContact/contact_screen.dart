@@ -11,7 +11,7 @@ class ContactScreen extends StatefulWidget {
 }
 
 class _ContactScreenState extends State<ContactScreen> {
-    late final UserProvider userProv;
+  late final UserProvider userProv;
 
   @override
   void initState() {
@@ -31,29 +31,29 @@ class _ContactScreenState extends State<ContactScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Add User'),
+          title: const Text('Add User'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               TextFormField(
                 controller: userProvider.nameController,
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
               ),
               TextFormField(
                 controller: userProvider.phoneNumberController,
-                decoration: InputDecoration(labelText: 'Phone Number'),
+                decoration: const InputDecoration(labelText: 'Phone Number'),
               ),
             ],
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('Add'),
+              child: const Text('Add'),
               onPressed: () {
                 userProvider.addUser();
                 Navigator.of(context).pop();
@@ -74,29 +74,29 @@ class _ContactScreenState extends State<ContactScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Update User'),
+          title: const Text('Update User'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               TextFormField(
                 controller: userProvider.nameController,
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
               ),
               TextFormField(
                 controller: userProvider.phoneNumberController,
-                decoration: InputDecoration(labelText: 'Phone Number'),
+                decoration: const InputDecoration(labelText: 'Phone Number'),
               ),
             ],
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('Update'),
+              child: const Text('Update'),
               onPressed: () {
                 String newName = userProvider.nameController.text;
                 String newPhoneNumber = userProvider.phoneNumberController.text;
@@ -115,46 +115,73 @@ class _ContactScreenState extends State<ContactScreen> {
     final userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Data Pengguna CRUD'),
-      ),
-      body: SizedBox(
-        height: 200,
-        child: userProvider.isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : ListView.builder(
-                itemCount: userProvider.userData.length,
-                itemBuilder: (context, index) {
-                  final user = userProvider.userData[index];
-                  return ListTile(
-                    title: Text(user.name),
-                    subtitle: Text(user.phoneNumber),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        IconButton(
-                          icon: const Icon(Icons.edit),
-                          onPressed: () {
-                            showUpdateDialog(context, user);
-                          },
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () {
-                            userProvider.deleteUser(user.id);
-                          },
-                        ),
-                      ],
-                    ),
-                  );
-                },
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/image/contact.jfif'),
+                fit: BoxFit.cover,
               ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+            child: Column(
+              children: [
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Emergency\nContact',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Flexible(
+                  child: userProvider.isLoading
+                      ? const Center(child: CircularProgressIndicator())
+                      : ListView.builder(
+                          itemCount: userProvider.userData.length,
+                          itemBuilder: (context, index) {
+                            final user = userProvider.userData[index];
+                            return ListTile(
+                              title: Text(user.name),
+                              subtitle: Text(user.phoneNumber),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  IconButton(
+                                    icon: const Icon(Icons.edit),
+                                    onPressed: () {
+                                      showUpdateDialog(context, user);
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(Icons.delete),
+                                    onPressed: () {
+                                      userProvider.deleteUser(user.id);
+                                    },
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showAddUserDialog(context);
         },
-        child: Icon(Icons.add),
+        backgroundColor: const Color.fromARGB(255, 223, 127, 80),
+        child: const Icon(Icons.add),
       ),
     );
   }

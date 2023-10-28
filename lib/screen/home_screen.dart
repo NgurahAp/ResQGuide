@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -120,32 +121,28 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                   const SizedBox(height: 20),
-                  Center(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/ai');
-                      },
-                      child: Container(
-                        width: 300,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 221, 199, 166),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Center(
-                          child: Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Text(
-                              "Didn't find a suitable guide?\n\nAsk AI here!",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w700,
-                              ),
-                              textAlign: TextAlign.left,
-                            ),
-                          ),
-                        ),
+                  RichText(
+                    text: TextSpan(
+                      text: "Didn't find a suitable guide? \nAsk AI ",
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
                       ),
+                      children: [
+                        TextSpan(
+                          text: 'here!',
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFF0E4749),
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(context, '/ai');
+                            },
+                        ),
+                      ],
                     ),
                   ),
                 ],

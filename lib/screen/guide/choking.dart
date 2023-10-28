@@ -93,10 +93,14 @@ class ChokingPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
                         'assets/image/listGuide/Choking/step2.png',
                         height: 125,
+                      ),
+                      const SizedBox(
+                        width: 10,
                       ),
                       Image.asset(
                         'assets/image/listGuide/Choking/step3.png',
