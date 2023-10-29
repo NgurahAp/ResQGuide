@@ -22,7 +22,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Task Management',
-      theme: ThemeData(fontFamily: 'sfmono'),
+      theme: ThemeData(
+        fontFamily: 'sfmono',
+        primaryColor: const Color.fromARGB(255, 223, 127, 80),
+        hintColor: const Color.fromARGB(255, 223, 127, 80),
+      ),
       routes: {
         '/': (context) => LoginPage(),
         '/home': (context) => const HomePage(),
@@ -31,10 +35,10 @@ class MyApp extends StatelessWidget {
         '/guide1': (context) => const CutsPage(),
         '/guide2': (context) => const ChokingPage(),
         '/guide3': (context) => const BurnsPage(),
-        '/contact':(context) => ChangeNotifierProvider(
-          create: (_) => UserProvider(),
-          child: const ContactScreen(),
-        ),
+        '/contact': (context) => ChangeNotifierProvider(
+              create: (_) => UserProvider(),
+              child: const ContactScreen(),
+            ),
       },
     );
   }

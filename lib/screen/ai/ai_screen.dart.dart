@@ -158,12 +158,10 @@ class _AIScreenState extends State<AIScreen> {
       final result = await GuideService.getGuide(
         question: _controller.value.text,
       );
-      print('print pada ai screen = ${result.choices[0].text}');
       if (result.choices[0].text == '/guide0' ||
           result.choices[0].text == '/guide1' ||
           result.choices[0].text == '/guide2' ||
           result.choices[0].text == '/guide3') {
-        Navigator.pushNamed(context, result.choices[0].text);
       } else {
         setState(
           () {

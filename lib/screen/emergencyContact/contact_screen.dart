@@ -12,6 +12,7 @@ class ContactScreen extends StatefulWidget {
 
 class _ContactScreenState extends State<ContactScreen> {
   late final UserProvider userProv;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -30,36 +31,63 @@ class _ContactScreenState extends State<ContactScreen> {
     await showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Add User'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              TextFormField(
-                controller: userProvider.nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
-              ),
-              TextFormField(
-                controller: userProvider.phoneNumberController,
-                decoration: const InputDecoration(labelText: 'Phone Number'),
-              ),
-            ],
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
           ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  TextFormField(
+                    controller: userProvider.nameController,
+                    decoration: const InputDecoration(labelText: 'Name'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a name';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: userProvider.phoneNumberController,
+                    decoration: const InputDecoration(labelText: 'Phone Number'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a phone number';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.phone,
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      TextButton(
+                        child: const Text('Cancel'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        child: const Text('Add'),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            userProvider.addUser();
+                            Navigator.of(context).pop();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            TextButton(
-              child: const Text('Add'),
-              onPressed: () {
-                userProvider.addUser();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
+          ),
         );
       },
     );
@@ -70,41 +98,72 @@ class _ContactScreenState extends State<ContactScreen> {
     userProvider.nameController.text = user.name;
     userProvider.phoneNumberController.text = user.phoneNumber;
 
+    final _formKey = GlobalKey<FormState>();
+
     await showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Update User'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              TextFormField(
-                controller: userProvider.nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
-              ),
-              TextFormField(
-                controller: userProvider.phoneNumberController,
-                decoration: const InputDecoration(labelText: 'Phone Number'),
-              ),
-            ],
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
           ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  TextFormField(
+                    controller: userProvider.nameController,
+                    decoration: const InputDecoration(labelText: 'Name'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a name';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: userProvider.phoneNumberController,
+                    decoration: const InputDecoration(labelText: 'Phone Number'),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a phone number';
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.phone,
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      TextButton(
+                        child: const Text('Cancel'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        child: const Text('Update'),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            String newName = userProvider.nameController.text;
+                            String newPhoneNumber =
+                                userProvider.phoneNumberController.text;
+                            userProvider.updateUser(
+                                user.id, newName, newPhoneNumber);
+                            Navigator.of(context).pop();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            TextButton(
-              child: const Text('Update'),
-              onPressed: () {
-                String newName = userProvider.nameController.text;
-                String newPhoneNumber = userProvider.phoneNumberController.text;
-                userProvider.updateUser(user.id, newName, newPhoneNumber);
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
+          ),
         );
       },
     );
@@ -142,7 +201,10 @@ class _ContactScreenState extends State<ContactScreen> {
                 const SizedBox(height: 16),
                 Flexible(
                   child: userProvider.isLoading
-                      ? const Center(child: CircularProgressIndicator())
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.brown),
+                        ))
                       : ListView.builder(
                           itemCount: userProvider.userData.length,
                           itemBuilder: (context, index) {

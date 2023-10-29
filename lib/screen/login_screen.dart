@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:resq_guide/components/login_form.dart';
 import 'package:resq_guide/service/login_service.dart';
 
 class LoginPage extends StatelessWidget {
@@ -37,79 +38,16 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 50),
-              TextField(
+              LoginFormWidget(
                 controller: _usernameCtrl,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.all(16.0),
-                  filled: true,
-                  fillColor: Colors.white, // Warna latar belakang TextField
-                  hintText: 'Username',
-                  hintStyle: const TextStyle(color: Colors.grey),
-                  prefixIcon: const Icon(
-                    Icons.person, // Menggunakan ikon pengguna
-                    color: Colors.grey, // Warna ikon
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(20.0), // Mengatur bentuk rounded
-                    borderSide: const BorderSide(
-                      color: Color(0xFFE55812), // Warna garis tepi
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(20.0), // Mengatur bentuk rounded
-                    borderSide: const BorderSide(
-                      color: Color(0xFFE55812), // Warna garis tepi
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(20.0), // Mengatur bentuk rounded
-                    borderSide: const BorderSide(
-                      color: Color(0xFFE55812), // Warna garis tepi ketika fokus
-                    ),
-                  ),
-                ),
-                cursorColor: const Color(0xFF0E4749),
+                hintText: 'Username',
+                prefixIcon: Icons.person,
               ),
               const SizedBox(height: 20),
-              TextField(
+              LoginFormWidget(
                 controller: _passwordCtrl,
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.all(16.0),
-                  filled: true,
-                  fillColor: Colors.white, // Warna latar belakang TextField
-                  hintText: 'Password',
-                  hintStyle: const TextStyle(color: Colors.grey),
-
-                  prefixIcon: const Icon(
-                    Icons.password_rounded, // Menggunakan ikon pengguna
-                    color: Colors.grey, // Warna ikon
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(20.0), // Mengatur bentuk rounded
-                    borderSide: const BorderSide(
-                      color: Color(0xFFE55812), // Warna garis tepi
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(20.0), // Mengatur bentuk rounded
-                    borderSide: const BorderSide(
-                      color: Color(0xFFE55812), // Warna garis tepi
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius:
-                        BorderRadius.circular(20.0), // Mengatur bentuk rounded
-                    borderSide: const BorderSide(
-                      color: Color(0xFFE55812), // Warna garis tepi ketika fokus
-                    ),
-                  ),
-                ),
-                cursorColor: const Color(0xFF0E4749),
+                hintText: 'Password',
+                prefixIcon: Icons.password_rounded,
                 obscureText: true,
               ),
               const SizedBox(
