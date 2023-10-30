@@ -38,6 +38,7 @@ class GuideService {
         "temperature": 0.7,
         "max_tokens": 1000
       });
+      // print("Print sebelum response");
       var response = await http.post(
         url,
         headers: headers,
