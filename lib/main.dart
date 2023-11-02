@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:resq_guide/helpers/contact.dart';
-import 'package:resq_guide/screen/ai/ai_screen.dart.dart';
-import 'package:resq_guide/screen/emergencyContact/contact_screen.dart';
-import 'package:resq_guide/screen/guide/burns.dart';
-import 'package:resq_guide/screen/guide/choking.dart';
-import 'package:resq_guide/screen/guide/cuts.dart';
-import 'package:resq_guide/screen/guide/faint.dart';
-import 'package:resq_guide/screen/home_screen.dart';
-import 'package:resq_guide/screen/login_screen.dart';
+import 'package:resq_guide/viewModel/service/contact.dart';
+import 'package:resq_guide/view/ai/ai_screen.dart.dart';
+import 'package:resq_guide/view/emergencyContact/contact_screen.dart';
+import 'package:resq_guide/view/guide/burns.dart';
+import 'package:resq_guide/view/guide/choking.dart';
+import 'package:resq_guide/view/guide/cuts.dart';
+import 'package:resq_guide/view/guide/faint.dart';
+import 'package:resq_guide/view/home_screen.dart';
+import 'package:resq_guide/view/login_screen.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:resq_guide/models/contact.dart';
+import 'package:resq_guide/model/contact.dart';
 
 class UserProvider with ChangeNotifier {
   List<UserModel> _userData = [];

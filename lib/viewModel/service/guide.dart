@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:resq_guide/constants/openai.dart';
-import 'package:resq_guide/models/openai.dart';
+import 'package:resq_guide/viewModel/helpers/openai.dart';
+import 'package:resq_guide/model/openai.dart';
 
 class GuideService {
   static Future<GptData> getGuide({

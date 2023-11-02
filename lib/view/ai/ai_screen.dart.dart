@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resq_guide/service/guide.dart';
+import 'package:resq_guide/viewModel/service/guide.dart';
 
 class AIScreen extends StatefulWidget {
   const AIScreen({Key? key}) : super(key: key);
@@ -172,7 +172,6 @@ class _AIScreenState extends State<AIScreen> {
           },
         );
       }
-      if (mounted) {}
     } catch (e) {
       const snackBar = SnackBar(
         content: Text('Failed to send a request'),

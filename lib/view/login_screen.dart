@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:resq_guide/components/login_form.dart';
-import 'package:resq_guide/service/login_service.dart';
+import 'package:resq_guide/viewModel/widget/login_form.dart';
+import 'package:resq_guide/viewModel/service/login_service.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});

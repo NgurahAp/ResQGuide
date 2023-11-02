@@ -7,5 +7,5 @@ part of 'env.dart';
 // **************************************************************************
 
 class _Env {
-  static const String apiKey = '';
+  static const String apiKey = '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';
 }

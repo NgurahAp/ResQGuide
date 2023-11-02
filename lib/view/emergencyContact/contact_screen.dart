@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:resq_guide/helpers/contact.dart';
-import 'package:resq_guide/models/contact.dart';
+import 'package:resq_guide/viewModel/service/contact.dart';
+import 'package:resq_guide/model/contact.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -188,6 +188,19 @@ class _ContactScreenState extends State<ContactScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
             child: Column(
               children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      size: 25, // Increase the size of the icon
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/home');
+                    },
+                  ),
+                ),
+                const SizedBox(height: 20),
                 const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
